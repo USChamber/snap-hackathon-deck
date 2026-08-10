@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galactic Snaptastic — SNAP</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 1. Cold open -->
+      <section data-state="stars-dim">
+        <div class="cold-open">
+          <p class="kicker">Galactic Snaptastic presents</p>
+          <h1 class="title-xl">SNAP</h1>
+          <p class="tagline">50 state houses. One constellation.</p>
+        </div>
+        <aside class="notes">
+          Open quiet. Let the starfield sit for a beat before you speak.
+        </aside>
+      </section>
+
+      <!-- 2. The gap -->
+      <section data-auto-animate data-state="stars-dim">
+        <h2>Power is moving to the state houses</h2>
+        <div class="split">
+          <div class="split-text">
+            <p>Legislative decisions increasingly happen in 50 state capitals, not one.</p>
+            <p class="fragment">State chambers are working the same fights — <span class="dim">in isolation</span>.</p>
+            <p class="fragment">There's no shared room to coordinate.</p>
+          </div>
+          <div class="split-viz">
+            <svg id="constellation-gap" data-id="constellation" viewBox="0 0 400 300" aria-hidden="true"></svg>
+          </div>
+        </div>
+        <aside class="notes">
+          Scattered, unlinked stars on the right. Name the gap plainly.
+        </aside>
+      </section>
+
+      <!-- 3. SNAP -->
+      <section data-auto-animate data-state="stars-lit">
+        <h2><span class="plasma">SNAP</span> draws the constellation</h2>
+        <div class="split">
+          <div class="split-text">
+            <p>A layer on uschamber.com where state-chamber users log in, post, and discuss in threads.</p>
+            <ul class="two-problems">
+              <li class="fragment"><strong>Problem one:</strong> the state-legislative coordination gap.</li>
+              <li class="fragment"><strong>Problem two:</strong> how three developers ship at this scale.</li>
+            </ul>
+          </div>
+          <div class="split-viz">
+            <svg id="constellation-lit" data-id="constellation" viewBox="0 0 400 300" aria-hidden="true"></svg>
+          </div>
+        </div>
+        <aside class="notes">
+          "SNAP solves two problems — the state-legislative coordination gap, and how three developers ship something this size."
+        </aside>
+      </section>
+
+      <!-- 4. Demo -->
+      <section data-background-color="#05070f" class="demo-slide">
+        <video src="assets/snap-demo.mp4" poster="assets/snap-poster.jpg"
+               controls playsinline preload="metadata"
+               class="demo-video"></video>
+        <aside class="notes">
+          Log in → post → reply. Let it run, narrate lightly. This is the primary scoring moment.
+        </aside>
+      </section>
+
+      <!-- 5. The new way (transition) -->
+      <section>
+        <div class="cold-open">
+          <h2 class="title-lg">We didn't just build a product.</h2>
+          <h2 class="title-lg nebula fragment">We built a new way to build.</h2>
+        </div>
+        <aside class="notes">
+          Pivot beat. Slow down. Four visuals follow.
+        </aside>
+      </section>
+
+      <!-- 6. Viz 1 — Pipeline: prompt → spec → software -->
+      <section id="viz-pipeline">
+        <h2>Prompts are the new source code</h2>
+        <div class="viz-slot" data-viz="pipeline"></div>
+        <p class="caption" data-caption>A plain-English prompt.</p>
+        <aside class="notes">
+          One click per stage: prompt, spec, rendered component. Punchline lands on the third reveal: "Nobody hand-wrote that code."
+        </aside>
+      </section>
+
+      <!-- 7. Viz 2 — Conductor -->
+      <section id="viz-conductor">
+        <h2>From writing code to directing a team</h2>
+        <div class="viz-slot" data-viz="conductor"></div>
+        <aside class="notes">
+          The thesis visual. Three developers become three conductors, each directing a fleet of agents.
+          Point at the amber node: "One of these three isn't even on our team — we'd never worked together
+          before this project. The prompts and specs were the shared language. AI didn't just multiply each
+          of us; it made the collaboration itself possible."
+        </aside>
+      </section>
+
+      <!-- 7b. Viz 3 — Bedrock -->
+      <section id="viz-bedrock">
+        <h2>Same AI speed. <span class="plasma">On bedrock.</span></h2>
+        <div class="viz-slot" data-viz="bedrock"></div>
+        <aside class="notes">
+          Deliver the joke here, after they've seen the spec stage: "The internet calls this vibe coding. It's not.
+          Lovable and Replit jump from a sentence to a throwaway app — no spec, no design system, no foundation.
+          We generate against a documented atom on top of years of architecture. Same speed, opposite discipline."
+          Point at the spec panel.
+        </aside>
+      </section>
+
+      <!-- 7c. Viz 4 — Velocity -->
+      <section id="viz-velocity">
+        <h2>Weeks of handoffs → days of directed loops</h2>
+        <div class="viz-slot" data-viz="velocity"></div>
+        <aside class="notes">
+          Let the length contrast carry it. One amber callout on the time delta.
+        </aside>
+      </section>
+
+      <!-- 8. Impact & results -->
+      <section data-auto-animate data-state="stars-lit">
+        <h2>What shipped</h2>
+        <div class="split">
+          <div class="split-text">
+            <p>SNAP is live end-to-end — the first project built entirely on the new workflow.</p>
+            <ul>
+              <li class="fragment">State chambers get a shared room as decisions move to the states.</li>
+              <li class="fragment">Three developers covered a surface area that used to take handoffs and weeks.</li>
+              <li class="fragment">One of the three came from a team we'd never worked with — specs and prompts were the shared language.</li>
+              <li class="fragment solar">Three developers. Two teams. One constellation.</li>
+            </ul>
+          </div>
+          <div class="split-viz">
+            <svg id="constellation-impact" data-id="constellation" viewBox="0 0 400 300" aria-hidden="true"></svg>
+          </div>
+        </div>
+        <aside class="notes">
+          "This is the first thing we shipped end-to-end the new way. Three developers — and one of them
+          from a team we'd never collaborated with before. The same thing that let us direct agents let us
+          work across team lines: everything was a readable spec, so there was no onboarding cliff.
+          AI didn't just speed us up, it made the collaboration possible."
+        </aside>
+      </section>
+
+      <!-- 9. Close -->
+      <section data-auto-animate data-state="stars-lit">
+        <div class="cold-open">
+          <svg id="constellation-close" data-id="constellation" viewBox="0 0 400 300" class="constellation-close" aria-hidden="true"></svg>
+          <h1 class="title-lg">Galactic Snaptastic</h1>
+          <p class="tagline">The constellation is lit. More stars to connect.</p>
+        </div>
+        <aside class="notes">
+          Full constellation. What's next: more state chambers, more shared rooms. Thank the judges.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/notes/notes.min.js"></script>
+  <script src="js/deck.js"></script>
+  <script src="js/viz.js"></script>
+</body>
+</html>

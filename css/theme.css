@@ -1,0 +1,203 @@
+/* Mission Control — design system for the SNAP deck (see SNAP_DECK_BUILD_BRIEF.md §3) */
+
+:root {
+  /* Surfaces — deep space */
+  --void:    #05070f;   /* page background */
+  --deep:    #0b1022;   /* slide panels */
+  --panel:   #121a33;   /* cards */
+  --panel-2: #1a2444;   /* raised cards */
+
+  /* Constellation accents */
+  --star:     #e8ecf8;  /* primary text (near-white) */
+  --star-dim: #9aa6c8;  /* muted text */
+  --plasma:   #35e0d0;  /* teal — primary accent: the product */
+  --nebula:   #8b7bff;  /* purple — secondary accent: the AI/method */
+  --solar:    #ffb547;  /* amber — the moment the eye should land */
+  --signal:   #4d9bff;  /* chamber blue — data / architecture */
+
+  /* Lines + glow */
+  --edge:        rgba(232,236,248,0.12);
+  --edge-strong: rgba(232,236,248,0.24);
+  --glow-plasma: 0 0 28px rgba(53,224,208,0.35);
+  --glow-nebula: 0 0 28px rgba(139,123,255,0.35);
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+}
+
+html, body { background: var(--void); }
+/* reveal core paints .reveal-viewport white/black — make it transparent so
+   the void background and the fixed starfield canvas show through */
+.reveal-viewport { background-color: transparent !important; color: var(--star); }
+#starfield { position: fixed; inset: 0; z-index: 0; }
+.reveal { z-index: 1; }
+
+.reveal { font-family: var(--font-body); color: var(--star); font-size: 1.25rem; }
+.reveal p, .reveal li { line-height: 1.6; }
+.reveal h1, .reveal h2, .reveal h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--star);
+}
+.reveal h1 { font-size: 3rem; }
+.reveal h2 { font-size: 2.4rem; margin-bottom: 0.8em; }
+.reveal .slides section { text-align: left; }
+.reveal a { color: var(--signal); }
+.reveal code, .reveal pre { font-family: var(--font-mono); font-size: 0.95rem; }
+
+/* Accent utilities — accents encode meaning, don't decorate */
+.plasma { color: var(--plasma); }
+.nebula { color: var(--nebula); }
+.solar  { color: var(--solar); }
+.signal { color: var(--signal); }
+.dim    { color: var(--star-dim); }
+
+/* Cold-open / centered hero slides */
+.cold-open { text-align: center; }
+.cold-open .kicker {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--star-dim);
+  letter-spacing: 0.08em;
+}
+.title-xl {
+  font-size: 6rem !important;
+  color: var(--plasma);
+  text-shadow: var(--glow-plasma);
+  margin: 0.1em 0;
+}
+.title-lg { font-size: 3rem !important; margin: 0.15em 0 !important; }
+.tagline { color: var(--star-dim); font-size: 1.4rem; }
+
+/* Two-column slide layout: text left, viz right */
+.split { display: flex; gap: 2.5rem; align-items: center; }
+.split-text { flex: 1.1; }
+.split-viz  { flex: 1; }
+.split-viz svg { width: 100%; height: auto; }
+
+.two-problems { list-style: none; margin-top: 1em; padding: 0; }
+.two-problems li { margin: 0.6em 0; }
+.two-problems strong { color: var(--plasma); font-weight: 500; }
+
+/* Demo slide — full-bleed, quiet */
+.demo-slide { text-align: center !important; }
+.demo-video {
+  width: 88vw;
+  max-height: 82vh;
+  border-radius: 14px;
+  box-shadow: var(--glow-plasma);
+  border: 1px solid var(--edge-strong);
+  background: var(--deep);
+}
+
+/* Visualization slots (populated by js/viz.js) */
+.viz-slot { min-height: 46vh; }
+.caption {
+  color: var(--star-dim);
+  font-size: 1.1rem;
+  margin-top: 1em;
+  min-height: 1.8em; /* reserve space so swaps don't reflow */
+}
+
+/* Cards for viz panels */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--edge);
+  border-radius: 12px;
+  padding: 1.2rem 1.4rem;
+}
+.card.raised { background: var(--panel-2); }
+.card.glow-plasma { box-shadow: var(--glow-plasma); border-color: rgba(53,224,208,0.4); }
+.card.glow-nebula { box-shadow: var(--glow-nebula); border-color: rgba(139,123,255,0.4); }
+
+.constellation-close { max-width: 420px; margin: 0 auto 1rem; display: block; }
+
+/* ---------- Viz 1 — pipeline ---------- */
+.pipeline { display: flex; gap: 1rem; align-items: stretch; }
+.pipeline-panel { flex: 1; min-width: 0; }
+.pipeline-arrow { align-self: center; color: var(--plasma); font-size: 1.8rem; }
+.panel-label { font-family: var(--font-mono); font-size: 1rem; margin: 0 0 0.6em; }
+.pipeline-prompt { font-size: 1.1rem; }
+.pipeline-spec {
+  font-family: var(--font-mono); font-size: 0.95rem; color: var(--star-dim);
+  margin: 0; white-space: pre; overflow-x: auto;
+}
+.thread-card .thread-author { font-weight: 500; margin: 0 0 0.3em; }
+.thread-card .thread-topic { margin: 0 0 0.3em; font-size: 1.1rem; }
+.thread-card .thread-meta { font-family: var(--font-mono); font-size: 1rem; margin: 0; }
+
+/* ---------- Viz 2 — conductor ---------- */
+.conductor { display: flex; flex-direction: column; gap: 0.7rem; }
+.conductor-row { display: flex; align-items: center; gap: 1rem; }
+.dev-node {
+  background: var(--panel); border: 1px solid var(--edge); border-radius: 10px;
+  color: var(--star-dim); font-family: var(--font-mono); font-size: 1rem;
+  padding: 0.5rem 1.1rem; min-width: 6.5rem; text-align: center;
+}
+.fleet { display: flex; align-items: center; gap: 0.6rem; }
+.fleet-line { width: 2.2rem; height: 1px; background: var(--nebula); opacity: 0.6; }
+.agent-node {
+  background: var(--panel-2); border: 1px solid rgba(139,123,255,0.45);
+  border-radius: 999px; color: var(--nebula); box-shadow: var(--glow-nebula);
+  font-family: var(--font-mono); font-size: 0.95rem; padding: 0.3rem 0.9rem;
+}
+.dev-node.cross-team {
+  border-color: rgba(255,181,71,0.55);
+  color: var(--solar);
+  box-shadow: 0 0 20px rgba(255,181,71,0.2);
+}
+.conductor-note { margin-top: 0.6em; font-size: 1.05rem; }
+.conductor-headline { margin-top: 0.3em; font-size: 1.4rem; }
+
+/* ---------- Viz 3 — bedrock (labels over assets/sandcastle.png) ---------- */
+/* capped so the 2:1 image + headline fit reveal's 700px slide height */
+.bedrock-hero { position: relative; width: 100%; max-width: 840px; margin: 0 auto 1.6rem; }
+.bedrock-hero img {
+  width: 100%; display: block; border-radius: 14px;
+  border: 1px solid var(--edge);
+}
+.bedrock-hero .hero-label {
+  position: absolute; transform: translateX(-50%);
+  font-family: var(--font-mono); font-size: 1.05rem; margin: 0;
+}
+.bedrock-hero .hero-label.plasma { text-shadow: 0 0 16px rgba(53,224,208,0.5); }
+.sand-missing {
+  position: absolute; left: 2.5%; top: 50%;
+  list-style: none; padding: 0; margin: 0; font-size: 1rem; color: var(--star-dim);
+}
+.sand-missing li { margin-bottom: 0.55em; }
+.sand-missing li::before { content: '✕ '; color: var(--solar); }
+.stratum-chip {
+  position: absolute; transform: translate(-50%, -50%);
+  font-family: var(--font-mono); font-size: 0.95rem; color: var(--star);
+  background: rgba(5,7,15,0.55); border: 1px solid var(--edge);
+  border-radius: 999px; padding: 0.15rem 0.9rem;
+  backdrop-filter: blur(2px);
+}
+.hero-note {
+  position: absolute; transform: translateX(-50%);
+  font-size: 1rem; margin: 0.5em 0 0; white-space: nowrap;
+}
+
+/* ---------- Viz 4 — velocity ---------- */
+.velocity { display: flex; flex-direction: column; gap: 2rem; margin-top: 1rem; }
+.timeline-track {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-mono); font-size: 1rem;
+}
+.timeline.old .timeline-track { width: 100%; justify-content: space-between; }
+.timeline-track.compressed {
+  width: 46%;
+  border-radius: 10px; padding: 0.5rem 1rem;
+  background: rgba(53,224,208,0.07); box-shadow: var(--glow-plasma);
+}
+.tl-sep { color: var(--edge-strong); }
+.velocity-callout { font-size: 1.6rem; font-family: var(--font-display); }
+
+/* Slow, purposeful motion only */
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
