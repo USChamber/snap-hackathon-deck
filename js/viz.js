@@ -71,6 +71,79 @@ tokens: panel, plasma, edge</pre>
       </div>`;
   }
 
+  /* ---------- Viz 2.5 — Inside a multi-agent workflow ---------- */
+
+  function swarm(slot) {
+    const LANES = [
+      { agent: 'component agent', task: 'builds the Vue thread card' },
+      { agent: 'test agent',      task: 'writes tests against the spec' },
+      { agent: 'security agent',  task: 'audits auth + input handling' },
+      { agent: 'design agent',    task: 'checks tokens + accessibility' },
+    ];
+    slot.innerHTML = `
+      <div class="swarm">
+        <div class="swarm-stage">
+          <div class="card swarm-directive">
+            <p class="panel-label dim">The directive</p>
+            <p>"Add comment moderation to SNAP threads."</p>
+          </div>
+        </div>
+        <div class="swarm-stage swarm-lanes">
+          ${LANES.map((l, i) => `
+            <div class="swarm-lane fragment" data-fragment-index="${i}">
+              <span class="agent-node">${l.agent}</span>
+              <span class="lane-task dim">${l.task}</span>
+            </div>`).join('')}
+        </div>
+        <div class="swarm-stage">
+          <div class="card swarm-verify fragment" data-fragment-index="${LANES.length}">
+            <p class="panel-label nebula">Cross-check</p>
+            <p class="lane-task">agents adversarially review each other's work
+               <span class="dim">— before a human looks</span></p>
+          </div>
+          <div class="card glow-plasma swarm-merged fragment" data-fragment-index="${LANES.length + 1}">
+            <p class="panel-label plasma">Merged</p>
+            <p class="lane-task">one reviewed pull request<br>
+               <span class="solar">hours, not sprints</span></p>
+          </div>
+        </div>
+      </div>
+      <p class="swarm-footnote dim fragment" data-fragment-index="${LANES.length + 2}">
+        The work went parallel. The developer reviews outcomes, not keystrokes.
+      </p>`;
+  }
+
+  /* ---------- Voice — speaking to the computer ---------- */
+
+  function voice(slot) {
+    const RESULTS = [
+      { icon: '✓', tone: 'plasma', text: 'spec updated — moderation-states.md' },
+      { icon: '⚡', tone: 'nebula', text: '4 agents spawned' },
+      { icon: '✓', tone: 'plasma', text: 'tests passing — 24/24' },
+      { icon: '✓', tone: 'solar',  text: 'pull request opened — ready for review' },
+    ];
+    slot.innerHTML = `
+      <div class="voice">
+        <div class="card raised voice-transcript">
+          <div class="voice-wave" aria-hidden="true">
+            ${Array.from({ length: 24 }, () => '<span class="wave-bar"></span>').join('')}
+          </div>
+          <p class="voice-words">"Take the thread card, add the moderation states from
+             this morning's discussion, test it, and open a PR."</p>
+          <p class="panel-label dim">spoken — 8 seconds, no keyboard</p>
+        </div>
+        <div class="voice-results">
+          ${RESULTS.map((r, i) => `
+            <div class="card voice-result fragment" data-fragment-index="${i}">
+              <span class="${r.tone}">${r.icon}</span> ${r.text}
+            </div>`).join('')}
+        </div>
+      </div>
+      <p class="voice-punchline fragment" data-fragment-index="${RESULTS.length}">
+        The keyboard is optional. <span class="plasma">Intent is the interface.</span>
+      </p>`;
+  }
+
   /* ---------- Viz 3 — Sandcastle vs bedrock ---------- */
 
   function bedrock(slot) {
@@ -126,7 +199,7 @@ tokens: panel, plasma, edge</pre>
 
   /* ---------- Mount + caption wiring ---------- */
 
-  const BUILDERS = { pipeline, conductor, bedrock, velocity };
+  const BUILDERS = { pipeline, conductor, swarm, voice, bedrock, velocity };
 
   document.querySelectorAll('.viz-slot').forEach((slot) => {
     const build = BUILDERS[slot.dataset.viz];
