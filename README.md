@@ -4,7 +4,7 @@ This is the slide deck for the SNAP hackathon presentation. It's a single web pa
 open `index.html` in any browser and you have the full presentation. No special
 software needed to *view* it.
 
-**Live version:** https://mattbloomfield.github.io/snap-hackathon-deck/
+**Live version:** https://uschamber.github.io/snap-hackathon-deck/
 
 ## Viewing the deck
 
@@ -24,11 +24,11 @@ you want in plain English, and Claude edits the files for you.
 1. **Install the Claude desktop app** from [claude.ai/download](https://claude.ai/download)
    and sign in.
 2. **Download this project.** Go to the
-   [repository page](https://github.com/mattbloomfield/snap-hackathon-deck), click the
+   [repository page](https://github.com/USChamber/snap-hackathon-deck), click the
    green **Code** button, then **Download ZIP**. Unzip it somewhere easy to find, like
    your Desktop.
    - *Alternative:* skip the manual download — in step 4, just ask Claude:
-     *"Clone https://github.com/mattbloomfield/snap-hackathon-deck and open it."*
+     *"Clone https://github.com/USChamber/snap-hackathon-deck and open it."*
 3. In the Claude desktop app, open the **Claude Code** tab (the `>_` icon).
 4. Point it at the project folder you unzipped (choose it as the working directory).
 
