@@ -156,11 +156,34 @@
   /* ---------- Voice — speaking to the computer ---------- */
 
   function voice(slot) {
+    const TRANSCRIPT = `"The following features will all be for the SNAP logged-in portal.
+      What we're working on is an AI-based summary for users to see when they first log in.
+      This will be on their home page when they log in to SNAP, and they should see actionable
+      content that they can jump into. We don't need to use AI for the search here — we can
+      just use Craft queries and take into account the user's preferences. So, for example,
+      if the user is interested in data centers and PFAS, then we would run a query against
+      all SNAP entries and pull any content that's tagged with those topics. We should also
+      take into account user behavior. So if a user interacts with certain content, then we
+      should be storing that even if they don't have that selected as a topic — similar to a
+      Facebook algorithm. And maybe we just store that on the user model, in an uneditable
+      section, something called, like, inferred interests or something. And then when we run
+      our query to populate this data, we should say since they last logged in — that would
+      be the date constraint — what new content has been added, and what content has been
+      updated that matches their stated and inferred preferences? This is all pretty new, so
+      I want you to take a little time to work with me on the planning here to think through
+      other layers. I think we'll probably have to have multiple queries. One would be things
+      they are for sure interested in, and then if that doesn't have enough content, then it
+      would be things we think they're interested in based off of inference. And then a third
+      layer could be things that are tangential — so maybe we can build a mapping of topics
+      and relate them to each other. We could have the editors do that via the entries field —
+      on each topic, they could add related topics, type thing."`;
+
     const RESULTS = [
-      { icon: '✓', tone: 'plasma', text: 'spec updated — moderation-states.md' },
-      { icon: '⚡', tone: 'nebula', text: '4 agents spawned' },
-      { icon: '✓', tone: 'plasma', text: 'tests passing — 24/24' },
-      { icon: '✓', tone: 'solar',  text: 'pull request opened — ready for review' },
+      { icon: '✓', tone: 'plasma', text: 'intent parsed — personalized home feed for the logged-in portal' },
+      { icon: '⚡', tone: 'nebula', text: 'plan drafted — 3 query layers: stated → inferred → tangential' },
+      { icon: '✓', tone: 'plasma', text: 'spec started — inferred interests on the user model' },
+      { icon: '✓', tone: 'nebula', text: 'repo rules applied — Craft queries, not AI search' },
+      { icon: '✓', tone: 'solar',  text: 'planning session opened — "work with me on this"' },
     ];
     slot.innerHTML = `
       <div class="voice">
@@ -168,9 +191,8 @@
           <div class="voice-wave" aria-hidden="true">
             ${Array.from({ length: 24 }, () => '<span class="wave-bar"></span>').join('')}
           </div>
-          <p class="voice-words">"Take the thread card, add the moderation states from
-             this morning's discussion, test it, and open a PR."</p>
-          <p class="panel-label dim">spoken — 8 seconds, no keyboard</p>
+          <p class="voice-words">${TRANSCRIPT}</p>
+          <p class="panel-label dim">spoken — two minutes, zero keystrokes</p>
         </div>
         <div class="voice-results">
           ${RESULTS.map((r, i) => `
@@ -180,7 +202,8 @@
         </div>
       </div>
       <p class="voice-punchline fragment" data-fragment-index="${RESULTS.length}">
-        The keyboard is optional. <span class="plasma">Intent is the interface.</span>
+        A rambling paragraph in. A plan out.
+        <span class="plasma">The skills, rules, and agents do the interpreting.</span>
       </p>`;
   }
 

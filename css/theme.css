@@ -198,7 +198,14 @@ html, body { background: var(--void); }
 .voice-transcript { flex: 1.2; }
 .voice-results { flex: 1; display: flex; flex-direction: column; gap: 0.6rem; justify-content: center; }
 .voice-result { padding: 0.6rem 1rem; font-family: var(--font-mono); font-size: 1rem; }
-.voice-words { font-size: 1.25rem; line-height: 1.5; margin: 0.8em 0; }
+/* the transcript is a wall of words on purpose — the mass is the message;
+   it fades out at the bottom rather than fitting on screen */
+.voice-words {
+  font-size: 1rem; line-height: 1.55; margin: 0.8em 0;
+  max-height: 15.5rem; overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, black 62%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 62%, transparent 100%);
+}
 .voice-punchline { font-size: 1.4rem; font-family: var(--font-display); margin-top: 1em; }
 .voice-wave { display: flex; gap: 4px; align-items: center; height: 2.4rem; }
 .wave-bar {
