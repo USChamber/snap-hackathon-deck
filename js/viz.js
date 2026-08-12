@@ -7,68 +7,95 @@
   /* ---------- Viz 1 — Prompt → spec → software ---------- */
 
   function pipeline(slot) {
+    // real artifacts: design-system/systems/snap/components/comment.md
+    // → snap-app/src/components/SnapComment.vue (shipped)
     slot.innerHTML = `
       <div class="pipeline">
         <div class="card pipeline-panel fragment" data-caption-text="A plain-English prompt.">
           <p class="panel-label dim">Prompt</p>
-          <p class="pipeline-prompt">"Build a discussion-thread card for SNAP:
-          author, state chamber, bill topic, reply count. Match the design system."</p>
+          <p class="pipeline-prompt">"Build the comment component for SNAP discussions —
+          avatar, byline with staff badge, plain-text body, Reply / Edit / Delete / Like.
+          Follow the spec."</p>
         </div>
         <div class="pipeline-arrow fragment" aria-hidden="true">→</div>
-        <div class="card pipeline-panel fragment" data-caption-text="A markdown atom spec — documented, reviewable.">
-          <p class="panel-label dim">Spec — thread-card.md</p>
-          <pre class="pipeline-spec"># atom: thread-card
-props:
-  author: string
-  chamber: string
-  topic: string
-  replies: number
-states: [default, unread]
-tokens: panel, plasma, edge</pre>
+        <div class="card pipeline-panel fragment"
+             data-caption-text="comment.md — the real spec, committed to the repo.">
+          <p class="panel-label dim">Spec — comment.md</p>
+          <pre class="pipeline-spec"># Comment
+> One row of a discussion thread:
+  avatar, byline (name, org, staff
+  badge, time), body, action links.
+
+| Prop        | Values      | Default |
+| author      | AuthorCard  |    —    |
+| body        | string      |    —    |
+| viewerLiked | boolean     |  false  |
+| isOwn       | boolean     |  false  |
+
+❌ Never render body as HTML —
+   comments are member content.</pre>
         </div>
         <div class="pipeline-arrow fragment" aria-hidden="true">→</div>
         <div class="card raised glow-plasma pipeline-panel fragment"
-             data-caption-text="Nobody hand-wrote that code.">
-          <p class="panel-label dim">Rendered — working Vue</p>
-          <div class="thread-card">
-            <p class="thread-author">Jordan Meyer <span class="dim">· Ohio Chamber</span></p>
-            <p class="thread-topic">State licensing bill — HB 214 coordination</p>
-            <p class="thread-meta plasma">14 replies · active today</p>
+             data-caption-text="SnapComment.vue — in production today. Nobody hand-wrote it.">
+          <p class="panel-label dim">Shipped — SnapComment.vue</p>
+          <div class="snap-comment">
+            <span class="sc-avatar" aria-hidden="true">JM</span>
+            <div class="sc-body">
+              <p class="sc-byline">Jordan Meyer <span class="dim">· Ohio Chamber</span>
+                <span class="sc-badge">Staff</span> <span class="dim">• 12h ago</span></p>
+              <p class="sc-text">Has anyone tracked the licensing-bill amendments
+                 that came out of committee this week?</p>
+              <p class="sc-actions plasma">Reply&nbsp;&nbsp;Like</p>
+            </div>
           </div>
         </div>
       </div>`;
   }
 
-  /* ---------- Viz 2 — Coder → conductor ---------- */
+  /* ---------- Viz 2 — One developer directing a crew of agents ---------- */
 
-  function conductor(slot) {
-    const AGENTS = ['design', 'component', 'test', 'review'];
-    const DEVS = [
-      { label: 'dev 1', cross: false },
-      { label: 'dev 2', cross: false },
-      { label: 'dev 3', cross: true },   // from a team we'd never worked with
+  function crew(slot) {
+    // real agents/skills from our repos (.claude/skills, resources)
+    const LANES = [
+      { agent: 'component agent',  task: 'builds SnapComment.vue from the spec' },
+      { agent: 'sync-tokens',      task: 'pulls Figma variables into tokens.css — deterministic, no hand-edits' },
+      { agent: 'eval-component',   task: 'audits it against the SNAP style guide — PASS / FAIL' },
+      { agent: 'api-test agent',   task: 'checks API test coverage' },
+      { agent: 'review agent',     task: 'first-pass code review' },
     ];
-    const fleets = DEVS.map(d => `
-      <div class="conductor-row">
-        <div class="dev-node${d.cross ? ' cross-team' : ''}">${d.label}</div>
-        <div class="fleet fragment" data-fragment-index="1">
-          <span class="fleet-line" aria-hidden="true"></span>
-          ${AGENTS.map(a => `<span class="agent-node">${a}</span>`).join('')}
-        </div>
-      </div>`).join('');
-
     slot.innerHTML = `
-      <div class="conductor">
-        ${fleets}
-        <p class="conductor-note fragment" data-fragment-index="2">
-          <span class="solar">◆</span> one developer from a different team —
-          <span class="dim">we'd never worked together before SNAP</span>
-        </p>
-        <p class="conductor-headline fragment" data-fragment-index="3">
-          3 developers. <span class="nebula">A dozen agents.</span>
-          <span class="solar">Two teams, one shared language.</span>
-        </p>
-      </div>`;
+      <div class="swarm">
+        <div class="swarm-stage">
+          <div class="dev-node">developer</div>
+          <div class="card swarm-directive">
+            <p class="panel-label dim">The directive</p>
+            <p>"Build the SNAP comment component."</p>
+          </div>
+        </div>
+        <div class="swarm-stage swarm-lanes">
+          ${LANES.map((l, i) => `
+            <div class="swarm-lane fragment" data-fragment-index="${i}">
+              <span class="agent-node">${l.agent}</span>
+              <span class="lane-task dim">${l.task}</span>
+            </div>`).join('')}
+        </div>
+        <div class="swarm-stage">
+          <div class="card swarm-verify fragment" data-fragment-index="${LANES.length}">
+            <p class="panel-label nebula">Cross-check</p>
+            <p class="lane-task">agents gate each other's work
+               <span class="dim">— before a human looks</span></p>
+          </div>
+          <div class="card glow-plasma swarm-merged fragment" data-fragment-index="${LANES.length + 1}">
+            <p class="panel-label plasma">Merged</p>
+            <p class="lane-task">one reviewed pull request<br>
+               <span class="solar">hours, not sprints</span></p>
+          </div>
+        </div>
+      </div>
+      <p class="swarm-footnote dim fragment" data-fragment-index="${LANES.length + 2}">
+        Real agents from our repos — not hypotheticals. The developer reviews outcomes, not keystrokes.
+      </p>`;
   }
 
   /* ---------- History — five years of AI adoption ---------- */
@@ -126,48 +153,6 @@ tokens: panel, plasma, edge</pre>
       </div>`;
   }
 
-  /* ---------- Viz 2.5 — Inside a multi-agent workflow ---------- */
-
-  function swarm(slot) {
-    const LANES = [
-      { agent: 'component agent', task: 'builds the Vue thread card' },
-      { agent: 'test agent',      task: 'writes tests against the spec' },
-      { agent: 'security agent',  task: 'audits auth + input handling' },
-      { agent: 'design agent',    task: 'checks tokens + accessibility' },
-    ];
-    slot.innerHTML = `
-      <div class="swarm">
-        <div class="swarm-stage">
-          <div class="card swarm-directive">
-            <p class="panel-label dim">The directive</p>
-            <p>"Add comment moderation to SNAP threads."</p>
-          </div>
-        </div>
-        <div class="swarm-stage swarm-lanes">
-          ${LANES.map((l, i) => `
-            <div class="swarm-lane fragment" data-fragment-index="${i}">
-              <span class="agent-node">${l.agent}</span>
-              <span class="lane-task dim">${l.task}</span>
-            </div>`).join('')}
-        </div>
-        <div class="swarm-stage">
-          <div class="card swarm-verify fragment" data-fragment-index="${LANES.length}">
-            <p class="panel-label nebula">Cross-check</p>
-            <p class="lane-task">agents adversarially review each other's work
-               <span class="dim">— before a human looks</span></p>
-          </div>
-          <div class="card glow-plasma swarm-merged fragment" data-fragment-index="${LANES.length + 1}">
-            <p class="panel-label plasma">Merged</p>
-            <p class="lane-task">one reviewed pull request<br>
-               <span class="solar">hours, not sprints</span></p>
-          </div>
-        </div>
-      </div>
-      <p class="swarm-footnote dim fragment" data-fragment-index="${LANES.length + 2}">
-        The work went parallel. The developer reviews outcomes, not keystrokes.
-      </p>`;
-  }
-
   /* ---------- Voice — speaking to the computer ---------- */
 
   function voice(slot) {
@@ -203,12 +188,11 @@ tokens: panel, plasma, edge</pre>
 
   function bedrock(slot) {
     // labels positioned over assets/sandcastle.png (percentages of the image box)
-    const STRATA = [           // top-to-bottom on the rock layers
-      { name: 'Craft CMS',  top: 67 },
-      { name: 'Algolia',    top: 74.5 },
-      { name: 'Fastly CDN', top: 81.5 },
-      { name: 'Auth0',      top: 88 },
-      { name: 'PostgreSQL', top: 94 },
+    const STRATA = [           // top-to-bottom on the rock layers; revealed bottom-up
+      { name: 'hardening',     detail: 'security assessments',              top: 67 },
+      { name: 'system design', detail: 'frontend + backend goals',          top: 76 },
+      { name: 'handholding',   detail: 'skills · plugins · testing',        top: 85 },
+      { name: 'framework',     detail: 'Craft CMS · Auth0 · Vue',           top: 93 },
     ];
     const MISSING = ['no auth', 'no data model', 'no security', 'no real foundation'];
 
@@ -223,7 +207,8 @@ tokens: panel, plasma, edge</pre>
         ${STRATA.map((s, i) => `
           <span class="stratum-chip fragment"
                 data-fragment-index="${MISSING.length + (STRATA.length - 1 - i)}"
-                style="left:71%; top:${s.top}%;">${s.name}</span>`).join('')}
+                style="left:71%; top:${s.top}%;">${s.name}
+            <span class="chip-detail dim">${s.detail}</span></span>`).join('')}
         <p class="hero-note dim fragment" data-fragment-index="${MISSING.length + STRATA.length}"
            style="left:71%; top:100%;">years of Chamber architecture</p>
       </div>`;
@@ -233,28 +218,50 @@ tokens: panel, plasma, edge</pre>
 
   function velocity(slot) {
     const OLD = ['designer', 'mockup', 'ticket', 'build', 'QA', 'revise'];
-    const NEW = ['prompt', 'generate', 'review', 'refine'];
+    const LOOP = ['prompt', 'generate', 'review', 'refine'];  // 12 / 3 / 6 / 9 o'clock
     slot.innerHTML = `
       <div class="velocity">
-        <div class="timeline old fragment">
-          <p class="panel-label dim">The old way — weeks</p>
+        <div class="timeline old fragment" data-fragment-index="0">
+          <p class="panel-label dim">The old way — a line. One direction, six handoffs, weeks.</p>
           <div class="timeline-track dim">
-            ${OLD.map(s => `<span class="tl-step">${s}</span>`).join('<span class="tl-sep">—</span>')}
+            ${OLD.map(s => `<span class="tl-step">${s}</span>`).join('<span class="tl-sep">→</span>')}
           </div>
         </div>
-        <div class="timeline new fragment">
-          <p class="panel-label plasma">The new way — days</p>
-          <div class="timeline-track compressed">
-            ${NEW.map(s => `<span class="tl-step plasma">${s}</span>`).join('<span class="tl-sep">—</span>')}
+        <div class="loop-row fragment" data-fragment-index="1">
+          <div class="loop-ring" aria-hidden="true">
+            ${LOOP.map((s, i) => `<span class="loop-node pos-${i}">${s}</span>`).join('')}
+            <span class="loop-center dim">hours<br>per pass</span>
+          </div>
+          <div class="loop-text">
+            <p class="panel-label plasma">The new way — a loop</p>
+            <p class="lane-task dim">Prompt, generate, review, refine — around again
+               until it's right. No handoffs; the loop is the process.</p>
+            <p class="loop-ship">↳ then <span class="plasma">ship</span></p>
           </div>
         </div>
-        <p class="velocity-callout solar fragment">weeks → days</p>
+        <p class="velocity-callout solar fragment" data-fragment-index="2">
+          six handoffs became one loop — weeks became days
+        </p>
+      </div>`;
+  }
+
+  /* ---------- Team — the squadron ---------- */
+
+  function team(slot) {
+    const CREW = ['anthony', 'erik', 'james', 'matt', 'mimi', 'vasu', 'wags', 'zahwa'];
+    slot.innerHTML = `
+      <div class="team-grid">
+        ${CREW.map((n, i) => `
+          <figure class="sw-card" style="animation-delay:${0.25 + i * 0.12}s">
+            <img src="assets/team/deck/${n}.jpg" alt="${n}" loading="lazy">
+            <figcaption class="sw-name">${n[0].toUpperCase() + n.slice(1)}</figcaption>
+          </figure>`).join('')}
       </div>`;
   }
 
   /* ---------- Mount + caption wiring ---------- */
 
-  const BUILDERS = { pipeline, conductor, swarm, voice, bedrock, velocity, history };
+  const BUILDERS = { pipeline, crew, voice, bedrock, velocity, history, team };
 
   document.querySelectorAll('.viz-slot').forEach((slot) => {
     const build = BUILDERS[slot.dataset.viz];

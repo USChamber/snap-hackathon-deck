@@ -64,13 +64,54 @@
         </aside>
       </section>
 
-      <!-- 4. Demo -->
-      <section data-background-color="#05070f" class="demo-slide">
-        <video src="assets/snap-demo.mp4" poster="assets/snap-poster.jpg"
-               controls playsinline preload="metadata"
-               class="demo-video"></video>
+      <!-- 3a–3d. Clips — full-bleed background video -->
+      <section data-background-video="assets/headlines.mp4"
+               data-background-video-loop data-background-video-muted
+               data-background-size="cover" data-background-color="#05070f">
+        <aside class="notes">Clip plays automatically, full-bleed; arrow on when ready.</aside>
+      </section>
+      <section data-background-video="assets/charts.mp4"
+               data-background-video-loop data-background-video-muted
+               data-background-size="cover" data-background-color="#05070f">
+        <aside class="notes">Clip plays automatically, full-bleed; arrow on when ready.</aside>
+      </section>
+      <section data-background-video="assets/galaga.mp4"
+               data-background-video-loop data-background-video-muted
+               data-background-size="contain" data-background-color="#05070f">
+        <aside class="notes">Clip plays automatically — vertical video, letterboxed on the starfield-dark background; arrow on when ready.</aside>
+      </section>
+      <section data-background-video="assets/star-wars.mp4"
+               data-background-video-loop data-background-video-muted
+               data-background-size="cover" data-background-color="#05070f">
+        <aside class="notes">Clip plays automatically, full-bleed; arrow on when ready. Sets up the squadron slide.</aside>
+      </section>
+
+      <!-- 3e. The team -->
+      <section id="team-slide">
+        <div class="team-scroll">
+          <p class="crawl-line">A long time ago, in a chamber not so far away…</p>
+          <h2 class="team-title">The squadron</h2>
+          <div class="viz-slot" data-viz="team"></div>
+        </div>
         <aside class="notes">
-          Log in → post → reply. Let it run, narrate lightly. This is the primary scoring moment.
+          Let the cards land, then the whole frame crawls slowly upward to bring the bottom row
+          into view. Take the laugh, name the crew. Quick beat — then the live demo.
+        </aside>
+      </section>
+
+      <!-- 4. Demo — live, in a separate tab -->
+      <section data-background-color="#05070f" class="demo-slide">
+        <div class="demo-placeholder">
+          <p class="kicker">on uschamber.com</p>
+          <h2 class="title-lg">SNAP, live</h2>
+          <p class="demo-flow dim">log in <span class="plasma">→</span> post
+             <span class="plasma">→</span> discuss</p>
+        </div>
+        <aside class="notes">
+          Switch to the SNAP tab NOW — have it open, logged in, and pre-positioned before you go
+          on stage. Demo beats: log in → post → reply in a thread. Narrate lightly; let the product
+          talk. This is the primary scoring moment. When done, switch back — this slide is still
+          here, hit the arrow and keep moving.
         </aside>
       </section>
 
@@ -103,32 +144,25 @@
         <div class="viz-slot" data-viz="pipeline"></div>
         <p class="caption" data-caption>A plain-English prompt.</p>
         <aside class="notes">
-          One click per stage: prompt, spec, rendered component. Punchline lands on the third reveal: "Nobody hand-wrote that code."
+          One click per stage: prompt, spec, shipped component. Everything on this slide is real:
+          comment.md is the actual atom spec in our design system, and SnapComment.vue is the actual
+          component running in SNAP production — the first line of the file cites the spec it was
+          generated against. Punchline on the third reveal: "Nobody hand-wrote that code. It's in
+          production today."
         </aside>
       </section>
 
-      <!-- 7. Viz 2 — Conductor -->
-      <section id="viz-conductor">
-        <h2>From writing code to directing a team</h2>
-        <div class="viz-slot" data-viz="conductor"></div>
+      <!-- 7. Viz 2 — One developer, a crew of agents -->
+      <section id="viz-crew">
+        <h2>One developer. <span class="nebula">A crew of agents.</span></h2>
+        <div class="viz-slot" data-viz="crew"></div>
         <aside class="notes">
-          The thesis visual. Three developers become three conductors, each directing a fleet of agents.
-          Point at the amber node: "One of these three isn't even on our team — we'd never worked together
-          before this project. The prompts and specs were the shared language. AI didn't just multiply each
-          of us; it made the collaboration itself possible."
-        </aside>
-      </section>
-
-      <!-- 7a-1. Viz 2.5 — Inside a multi-agent workflow -->
-      <section id="viz-swarm">
-        <h2>One prompt. <span class="nebula">A whole crew, in parallel.</span></h2>
-        <div class="viz-slot" data-viz="swarm"></div>
-        <aside class="notes">
-          Walk the stages left to right as you click: one directive fans out to parallel agents —
-          one builds the component, one writes tests against the spec, one reviews for security,
-          one checks the design system. Then the verify step: agents adversarially check each other's
-          work before a human ever looks. "Serial handoffs became parallel lanes. The developer reviews
-          outcomes, not keystrokes. That code review at the end? An agent did the first pass."
+          The thesis visual. One directive fans out to parallel agents — and these are real,
+          committed to our repos today, not hypothetical: sync-tokens pulls Figma variables into
+          code deterministically; eval-component audits the result against the SNAP style guide
+          and reports PASS/FAIL. Land on the cross-check: agents gate each other's work before a
+          human ever looks. "Serial handoffs became parallel lanes. The developer reviews outcomes,
+          not keystrokes."
         </aside>
       </section>
 
@@ -151,8 +185,10 @@
         <aside class="notes">
           Deliver the joke here, after they've seen the spec stage: "The internet calls this vibe coding. It's not.
           Lovable and Replit jump from a sentence to a throwaway app — no spec, no design system, no foundation.
-          We generate against a documented atom on top of years of architecture. Same speed, opposite discipline."
-          Point at the spec panel.
+          Same speed, opposite discipline." Then walk the strata bottom-up as you click:
+          a real framework (Craft CMS, Auth0, Vue) — handholding for the AI (skills, plugins, testing) —
+          system design (we understand the frontend and backend goals; the AI doesn't have to guess) —
+          and hardening on top (security assessments before anything ships).
         </aside>
       </section>
 
@@ -161,7 +197,10 @@
         <h2>Weeks of handoffs → days of directed loops</h2>
         <div class="viz-slot" data-viz="velocity"></div>
         <aside class="notes">
-          Let the length contrast carry it. One amber callout on the time delta.
+          The shape is the argument: the old way is a line — work moves one direction through six
+          pairs of hands, and a mistake at the end restarts the whole line. The new way is a loop —
+          prompt, generate, review, refine, around again in hours, and you only exit when it's right:
+          ship. Don't over-narrate; point at the spinning ring.
         </aside>
       </section>
 

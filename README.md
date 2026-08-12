@@ -38,8 +38,6 @@ Just tell Claude what you want, like you'd tell a teammate:
 
 > "On the impact slide, change the third bullet to say we launched in 12 states."
 
-> "The demo video feels buried — make it bigger and remove the border."
-
 > "Add a slide after the velocity slide thanking the review committee."
 
 > "Change 'a dozen agents' to 'twenty agents' everywhere it appears."
@@ -74,13 +72,13 @@ through logging in to GitHub — just follow its prompts.)
 | `css/theme.css` | The "Mission Control" design system: colors, fonts, spacing |
 | `js/deck.js` | Slide engine setup + the drifting starfield background |
 | `js/viz.js` | The interactive visualizations (pipeline, agents, bedrock, timelines) |
-| `assets/` | Images and the demo video (the video stays local; it isn't uploaded) |
+| `assets/` | Images used by the slides |
 | `SNAP_DECK_BUILD_BRIEF.md` | The original build brief — the deck's "source of truth" for tone and content |
 
 ## Presenting on the big day
 
 - Present from a **downloaded copy** on the presenter's laptop, not the live URL —
   conference wifi is a known failure mode.
-- Make sure `assets/snap-demo.mp4` (the product demo video) is on that laptop; it is
-  deliberately **not** stored on GitHub, so it doesn't come with the ZIP.
+- The demo is done **live in a separate browser tab** — have SNAP open, logged in, and
+  positioned on the right page before you go on stage.
 - Do one full run-through with wifi off before you go on.
