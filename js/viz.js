@@ -221,16 +221,17 @@
     const LOOP = ['prompt', 'generate', 'review', 'refine'];  // 12 / 3 / 6 / 9 o'clock
     slot.innerHTML = `
       <div class="velocity">
-        <div class="timeline old fragment" data-fragment-index="0">
+        <div class="timeline old">
           <p class="panel-label dim">The old way — a line. One direction, six handoffs, weeks.</p>
           <div class="timeline-track dim">
-            ${OLD.map(s => `<span class="tl-step">${s}</span>`).join('<span class="tl-sep">→</span>')}
+            ${OLD.map((s, i) =>
+              `<span class="tl-step fragment brighten" data-fragment-index="${i}">${s}</span>`
+            ).join('<span class="tl-sep">→</span>')}
           </div>
         </div>
-        <div class="loop-row fragment" data-fragment-index="1">
+        <div class="loop-row fragment" data-fragment-index="${OLD.length}">
           <div class="loop-ring" aria-hidden="true">
             ${LOOP.map((s, i) => `<span class="loop-node pos-${i}">${s}</span>`).join('')}
-            <span class="loop-center dim">hours<br>per pass</span>
           </div>
           <div class="loop-text">
             <p class="panel-label plasma">The new way — a loop</p>
@@ -239,7 +240,7 @@
             <p class="loop-ship">↳ then <span class="plasma">ship</span></p>
           </div>
         </div>
-        <p class="velocity-callout solar fragment" data-fragment-index="2">
+        <p class="velocity-callout solar fragment" data-fragment-index="${OLD.length + 1}">
           six handoffs became one loop — weeks became days
         </p>
       </div>`;
@@ -276,7 +277,13 @@
     if (visible.length) cap.textContent = visible[visible.length - 1].dataset.captionText;
   }
 
+  // rebrand slide: the trigger fragment starts (or rewinds) the Falcon sequence
+  function toggleRebrand(fragment, on) {
+    if (!fragment.classList.contains('rebrand-trigger')) return;
+    fragment.closest('.rebrand').classList.toggle('go', on);
+  }
+
   Reveal.on('ready', () => Reveal.sync());
-  Reveal.on('fragmentshown',  (e) => updateCaption(e.fragment.closest('section')));
-  Reveal.on('fragmenthidden', (e) => updateCaption(e.fragment.closest('section')));
+  Reveal.on('fragmentshown',  (e) => { updateCaption(e.fragment.closest('section')); toggleRebrand(e.fragment, true); });
+  Reveal.on('fragmenthidden', (e) => { updateCaption(e.fragment.closest('section')); toggleRebrand(e.fragment, false); });
 })();
