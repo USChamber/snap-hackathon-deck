@@ -152,6 +152,34 @@ html, body { background: var(--void); }
 .conductor-note { margin-top: 0.6em; font-size: 1.05rem; }
 .conductor-headline { margin-top: 0.3em; font-size: 1.4rem; }
 
+/* ---------- History — four eras of AI adoption ---------- */
+.history { position: relative; }
+.history-rail {
+  position: absolute; left: 0; right: 0; top: 0.45rem; height: 1px;
+  background: linear-gradient(90deg, var(--edge), rgba(53,224,208,0.5));
+}
+.history-eras { display: flex; gap: 1.4rem; }
+.history-era { flex: 1; position: relative; padding-top: 1.4rem; }
+.era-dot {
+  position: absolute; top: 0; left: 0;
+  width: 0.9rem; height: 0.9rem; border-radius: 50%;
+  background: var(--star-dim);
+}
+.dim-dot    { background: var(--star-dim); }
+.signal-dot { background: var(--signal); }
+.nebula-dot { background: var(--nebula); box-shadow: var(--glow-nebula); }
+.plasma-dot { background: var(--plasma); box-shadow: var(--glow-plasma); }
+.era-years { font-family: var(--font-mono); font-size: 1rem; margin: 0 0 0.2em; }
+.era-name { font-family: var(--font-display); font-size: 1.25rem; margin: 0 0 0.5em; }
+.era-items { list-style: none; padding: 0; margin: 0; }
+.era-items li {
+  font-size: 1rem; line-height: 1.45; color: var(--star-dim);
+  margin-bottom: 0.45em; padding-left: 0.9em; position: relative;
+}
+.era-items li::before { content: '·'; position: absolute; left: 0; color: var(--edge-strong); }
+.history-era:last-child .era-items li { color: var(--star); }
+.history-punchline { font-size: 1.35rem; font-family: var(--font-display); margin-top: 1.4em; }
+
 /* ---------- Viz 2.5 — multi-agent swarm ---------- */
 .swarm { display: flex; gap: 1.2rem; align-items: center; }
 .swarm-stage { display: flex; flex-direction: column; gap: 0.7rem; flex: 1; }

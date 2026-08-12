@@ -71,6 +71,61 @@ tokens: panel, plasma, edge</pre>
       </div>`;
   }
 
+  /* ---------- History — five years of AI adoption ---------- */
+
+  function history(slot) {
+    const ERAS = [
+      {
+        name: 'Fancy autocomplete', years: '2021–22', tone: 'dim',
+        items: [
+          'GitHub Copilot beta access — fall 2021',
+          'Daily-driver autocomplete on the team',
+        ],
+      },
+      {
+        name: 'Knowledge companion', years: '2022–23', tone: 'signal',
+        items: [
+          'ChatGPT for coding knowledge — Dec 2022',
+          'Teamwide Copilot adoption',
+        ],
+      },
+      {
+        name: 'Agentic workflows emerge', years: '2024–25', tone: 'nebula',
+        items: [
+          'Early agentic betas — rough, but we ran them',
+          'First AI code review · first LLM-directed commit',
+          'MCP servers wired in — Jira, Chrome, Figma',
+        ],
+      },
+      {
+        name: 'True agentic use', years: '2026', tone: 'plasma',
+        items: [
+          'Agents get good — Claude Code becomes the workbench',
+          'Our own MCP servers, skills committed to repos',
+          'Multi-agent threading · first-party Chamber plugins',
+        ],
+      },
+    ];
+    slot.innerHTML = `
+      <div class="history">
+        <div class="history-rail" aria-hidden="true"></div>
+        <div class="history-eras">
+          ${ERAS.map((e, i) => `
+            <div class="history-era fragment" data-fragment-index="${i}">
+              <span class="era-dot ${e.tone}-dot" aria-hidden="true"></span>
+              <p class="era-years dim">${e.years}</p>
+              <p class="era-name ${e.tone}">${e.name}</p>
+              <ul class="era-items">
+                ${e.items.map(it => `<li>${it}</li>`).join('')}
+              </ul>
+            </div>`).join('')}
+        </div>
+        <p class="history-punchline fragment" data-fragment-index="${ERAS.length}">
+          Every wave, adopted early. <span class="plasma">By 2026, we were ready.</span>
+        </p>
+      </div>`;
+  }
+
   /* ---------- Viz 2.5 — Inside a multi-agent workflow ---------- */
 
   function swarm(slot) {
@@ -199,7 +254,7 @@ tokens: panel, plasma, edge</pre>
 
   /* ---------- Mount + caption wiring ---------- */
 
-  const BUILDERS = { pipeline, conductor, swarm, voice, bedrock, velocity };
+  const BUILDERS = { pipeline, conductor, swarm, voice, bedrock, velocity, history };
 
   document.querySelectorAll('.viz-slot').forEach((slot) => {
     const build = BUILDERS[slot.dataset.viz];
