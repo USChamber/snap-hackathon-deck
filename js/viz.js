@@ -13,7 +13,7 @@
       <div class="pipeline">
         <div class="card pipeline-panel fragment" data-caption-text="A plain-English prompt.">
           <p class="panel-label dim">Prompt</p>
-          <p class="pipeline-prompt">"Build the comment component for SNAP discussions —
+          <p class="pipeline-prompt">"Build the comment component for APEX discussions —
           avatar, byline with staff badge, plain-text body, Reply / Edit / Delete / Like.
           Follow the spec."</p>
         </div>
@@ -70,7 +70,7 @@
           <div class="dev-node">developer</div>
           <div class="card swarm-directive">
             <p class="panel-label dim">The directive</p>
-            <p>"Build the SNAP comment component."</p>
+            <p>"Build the APEX comment component."</p>
           </div>
         </div>
         <div class="swarm-stage swarm-lanes">
@@ -156,13 +156,13 @@
   /* ---------- Voice — speaking to the computer ---------- */
 
   function voice(slot) {
-    const TRANSCRIPT = `"The following features will all be for the SNAP logged-in portal.
+    const TRANSCRIPT = `"The following features will all be for the APEX logged-in portal.
       What we're working on is an AI-based summary for users to see when they first log in.
-      This will be on their home page when they log in to SNAP, and they should see actionable
+      This will be on their home page when they log in to APEX, and they should see actionable
       content that they can jump into. We don't need to use AI for the search here — we can
       just use Craft queries and take into account the user's preferences. So, for example,
       if the user is interested in data centers and PFAS, then we would run a query against
-      all SNAP entries and pull any content that's tagged with those topics. We should also
+      all APEX entries and pull any content that's tagged with those topics. We should also
       take into account user behavior. So if a user interacts with certain content, then we
       should be storing that even if they don't have that selected as a topic — similar to a
       Facebook algorithm. And maybe we just store that on the user model, in an uneditable
@@ -223,7 +223,7 @@
       <div class="bedrock-hero">
         <img src="assets/sandcastle.png" alt="A crumbling sandcastle on shifting sand next to an identical castle standing on deep bedrock strata">
         <p class="hero-label dim" style="left:27.5%; top:10%;">Lovable / Replit</p>
-        <p class="hero-label plasma" style="left:71%; top:6%;">SNAP</p>
+        <p class="hero-label plasma" style="left:71%; top:6%;">APEX</p>
         <ul class="sand-missing">
           ${MISSING.map((m, i) => `<li class="fragment" data-fragment-index="${i}">${m}</li>`).join('')}
         </ul>
@@ -252,18 +252,20 @@
             ).join('<span class="tl-sep">→</span>')}
           </div>
         </div>
-        <div class="loop-row fragment" data-fragment-index="${OLD.length}">
+        <p class="apex-way fragment" data-fragment-index="${OLD.length}">
+          The <span class="plasma">APEX</span> way
+        </p>
+        <div class="loop-row fragment" data-fragment-index="${OLD.length + 1}">
           <div class="loop-ring" aria-hidden="true">
             ${LOOP.map((s, i) => `<span class="loop-node pos-${i}">${s}</span>`).join('')}
           </div>
           <div class="loop-text">
-            <p class="panel-label plasma">The new way — a loop</p>
             <p class="lane-task dim">Prompt, generate, review, refine — around again
                until it's right. No handoffs; the loop is the process.</p>
             <p class="loop-ship">↳ then <span class="plasma">ship</span></p>
           </div>
         </div>
-        <p class="velocity-callout solar fragment" data-fragment-index="${OLD.length + 1}">
+        <p class="velocity-callout solar fragment" data-fragment-index="${OLD.length + 2}">
           six handoffs became one loop — weeks became days
         </p>
       </div>`;
@@ -300,13 +302,10 @@
     if (visible.length) cap.textContent = visible[visible.length - 1].dataset.captionText;
   }
 
-  // rebrand slide: the trigger fragment starts (or rewinds) the Falcon sequence
-  function toggleRebrand(fragment, on) {
-    if (!fragment.classList.contains('rebrand-trigger')) return;
-    fragment.closest('.rebrand').classList.toggle('go', on);
-  }
+  // (the rebrand/Falcon sequence is pure CSS — driven by
+  //  .rebrand:has(.rebrand-trigger.visible) in theme.css)
 
   Reveal.on('ready', () => Reveal.sync());
-  Reveal.on('fragmentshown',  (e) => { updateCaption(e.fragment.closest('section')); toggleRebrand(e.fragment, true); });
-  Reveal.on('fragmenthidden', (e) => { updateCaption(e.fragment.closest('section')); toggleRebrand(e.fragment, false); });
+  Reveal.on('fragmentshown',  (e) => updateCaption(e.fragment.closest('section')));
+  Reveal.on('fragmenthidden', (e) => updateCaption(e.fragment.closest('section')));
 })();

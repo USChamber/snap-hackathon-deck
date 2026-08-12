@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Galactic Snaptastic — SNAP</title>
+  <title>Galactic Snaptastic — APEX</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -14,20 +14,11 @@
   <div class="reveal">
     <div class="slides">
 
-      <!-- 1. Cold open -->
-      <section data-state="stars-dim">
+      <!-- 1. Cold open + rebrand — the Falcon retires the old logo -->
+      <section id="rebrand-slide" data-state="stars-dim" data-background-color="#05070f">
         <div class="cold-open">
           <p class="kicker">Galactic Snaptastic presents</p>
-          <h1 class="title-xl">SNAP</h1>
-          <p class="tagline">50 state houses. One constellation.</p>
         </div>
-        <aside class="notes">
-          Open quiet. Let the starfield sit for a beat before you speak.
-        </aside>
-      </section>
-
-      <!-- 1b. Rebrand — the Falcon retires the old logo -->
-      <section id="rebrand-slide" data-background-color="#05070f">
         <div class="rebrand">
           <img class="logo-old" src="assets/logo-snap.png" alt="SNAP — State Network Advocacy Portal logo">
           <img class="logo-new" src="assets/logo-apex.png" alt="APEX — Advocacy &amp; Policy Exchange logo">
@@ -44,11 +35,12 @@
           <span class="spark" style="--dx:-80px; --dy:180px" aria-hidden="true"></span>
           <span class="fragment rebrand-trigger" data-fragment-index="0" aria-hidden="true"></span>
         </div>
+        <p class="tagline rebrand-tagline">50 state houses. One constellation.</p>
         <aside class="notes">
-          One click runs the whole stunt: the Falcon strafes in, fires three bolts, the old SNAP
-          logo explodes, and APEX takes its place (~4 seconds). Say nothing until APEX lands —
-          then: "We rebranded mid-project. Advocacy and Policy Exchange — APEX." Clicking back
-          resets it if you need a do-over.
+          Open quiet on the old logo — let the starfield sit for a beat. Then one click runs the
+          whole stunt: the Falcon strafes in, fires three bolts, the old SNAP logo explodes, and
+          APEX takes its place (~4 seconds). Say nothing until APEX lands — then: "We rebranded
+          mid-project. Advocacy and Policy Exchange — APEX." Clicking back resets it for a do-over.
         </aside>
       </section>
 
@@ -91,32 +83,21 @@
       <section data-background-color="#05070f" class="demo-slide">
         <div class="demo-placeholder">
           <p class="kicker">on uschamber.com</p>
-          <h2 class="title-lg">SNAP, live</h2>
+          <h2 class="title-lg">APEX, live</h2>
           <p class="demo-flow dim">log in <span class="plasma">→</span> post
              <span class="plasma">→</span> discuss</p>
         </div>
         <aside class="notes">
-          Switch to the SNAP tab NOW — have it open, logged in, and pre-positioned before you go
+          Switch to the APEX tab NOW — have it open, logged in, and pre-positioned before you go
           on stage. Demo beats: log in → post → reply in a thread. Narrate lightly; let the product
           talk. This is the primary scoring moment. When done, switch back — this slide is still
           here, hit the arrow and keep moving.
         </aside>
       </section>
 
-      <!-- 5. The new way (transition) -->
-      <section>
-        <div class="cold-open">
-          <h2 class="title-lg">We didn't just build a product.</h2>
-          <h2 class="title-lg nebula fragment">We built a new way to build.</h2>
-        </div>
-        <aside class="notes">
-          Pivot beat. Slow down. Four visuals follow.
-        </aside>
-      </section>
-
       <!-- 5b. History — five years on the edge -->
       <section id="viz-history">
-        <h2>We've been here since the beta</h2>
+        <h2>A legacy of innovating work</h2>
         <div class="viz-slot" data-viz="history"></div>
         <aside class="notes">
           Move fast — one click per era, a sentence each. The point is depth, not detail:
@@ -134,7 +115,7 @@
         <aside class="notes">
           One click per stage: prompt, spec, shipped component. Everything on this slide is real:
           comment.md is the actual atom spec in our design system, and SnapComment.vue is the actual
-          component running in SNAP production — the first line of the file cites the spec it was
+          component running in APEX production — the first line of the file cites the spec it was
           generated against. Punchline on the third reveal: "Nobody hand-wrote that code. It's in
           production today."
         </aside>
@@ -148,7 +129,7 @@
           The thesis visual. One directive fans out to parallel agents — and these are real,
           committed to our repos today, not hypothetical. If asked, the real names: "the design
           syncer" is our sync-tokens skill (Figma variables into code, deterministically) and
-          "the inspector" is eval-component (audits against the SNAP style guide, PASS/FAIL).
+          "the inspector" is eval-component (audits against the APEX style guide, PASS/FAIL).
           Land on the cross-check: agents gate each other's work before a human ever looks.
           "Serial handoffs became parallel lanes. The developer reviews outcomes, not keystrokes."
         </aside>
@@ -170,24 +151,21 @@
 
       <!-- 7b. Viz 4 — Velocity -->
       <section id="viz-velocity">
-        <h2>Weeks of handoffs → days of directed loops</h2>
+        <h2>Putting it all together</h2>
         <div class="viz-slot" data-viz="velocity"></div>
-        <p class="velocity-first fragment" data-fragment-index="8">
-          SNAP is the <span class="plasma">first project we've shipped end-to-end</span> this way.
-        </p>
         <aside class="notes">
           The shape is the argument: the old way is a line — work moves one direction through six
-          pairs of hands, and a mistake at the end restarts the whole line. The new way is a loop —
-          prompt, generate, review, refine, around again in hours, and you only exit when it's right:
-          ship. Final click: "And SNAP is the first thing we've shipped end-to-end this way — three
-          developers, one from a team we'd never worked with; the specs and prompts were the shared
-          language."
+          pairs of hands, and a mistake at the end restarts the whole line. Click: "The APEX way" —
+          then the loop: prompt, generate, review, refine, around again in hours, and you only exit
+          when it's right: ship. Worth saying out loud somewhere here: APEX is the first project
+          we've shipped end-to-end this way — three developers, one from a team we'd never worked
+          with; the specs and prompts were the shared language.
         </aside>
       </section>
 
       <!-- 7c. Viz 3 — Bedrock -->
       <section id="viz-bedrock">
-        <h2>Same AI speed. <span class="plasma">On bedrock.</span></h2>
+        <h2>Is this just <span class="plasma">AI slop?</span></h2>
         <div class="viz-slot" data-viz="bedrock"></div>
         <aside class="notes">
           Deliver the joke here: "The internet calls this vibe coding. It's not.
@@ -199,15 +177,14 @@
         </aside>
       </section>
 
-      <!-- 9. Close -->
-      <section data-auto-animate data-state="stars-lit">
+      <!-- 10. Final word -->
+      <section>
         <div class="cold-open">
-          <svg id="constellation-close" data-id="constellation" viewBox="0 0 400 300" class="constellation-close" aria-hidden="true"></svg>
-          <h1 class="title-lg">Galactic Snaptastic</h1>
-          <p class="tagline">The constellation is lit. More stars to connect.</p>
+          <h2 class="title-lg">We didn't just build a product.</h2>
+          <h2 class="title-lg nebula fragment">We built a new way to build.</h2>
         </div>
         <aside class="notes">
-          Full constellation. What's next: more state chambers, more shared rooms. Thank the judges.
+          The last word. One click for the second line, let it sit, thank the judges.
         </aside>
       </section>
 

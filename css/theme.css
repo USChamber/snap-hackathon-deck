@@ -262,7 +262,7 @@ html, body { background: var(--void); }
 .timeline.old .timeline-track { width: 100%; justify-content: space-between; }
 .tl-sep { color: var(--edge-strong); }
 .velocity-callout { font-size: 1.5rem; font-family: var(--font-display); }
-.velocity-first { font-size: 1.25rem; margin-top: 0.8em; }
+.apex-way { font-family: var(--font-display); font-size: 1.6rem; margin: 0.2em 0 0; }
 
 /* "brighten" fragments: on screen from the start, lit bright white on their click */
 .reveal .fragment.brighten {
@@ -305,7 +305,8 @@ html, body { background: var(--void); }
 .loop-ship { font-family: var(--font-mono); font-size: 1.1rem; margin-top: 0.6em; }
 
 /* ---------- Rebrand — the Falcon retires the old logo ---------- */
-.rebrand { position: relative; height: 560px; }
+.rebrand { position: relative; height: 460px; }
+.rebrand-tagline { text-align: center; margin-top: 0.4em; }
 .rebrand .logo-old, .rebrand .logo-new {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
@@ -319,7 +320,7 @@ html, body { background: var(--void); }
   position: absolute; top: 30%; left: -220px; width: 190px; opacity: 0;
   filter: drop-shadow(0 0 14px rgba(232,236,248,0.3));
 }
-.rebrand.go .falcon { animation: falcon-run 3.2s ease-in-out forwards; }
+.rebrand:has(.rebrand-trigger.visible) .falcon { animation: falcon-run 3.2s ease-in-out forwards; }
 @keyframes falcon-run {
   0%   { opacity: 0; transform: translate(0, 50px); }
   12%  { opacity: 1; }
@@ -334,16 +335,16 @@ html, body { background: var(--void); }
   background: #ff3b30; box-shadow: 0 0 12px rgba(255,59,48,0.9);
   opacity: 0;
 }
-.rebrand.go .b1 { animation: bolt-fly 0.3s linear 1.45s forwards; }
-.rebrand.go .b2 { animation: bolt-fly 0.3s linear 1.65s forwards; }
-.rebrand.go .b3 { animation: bolt-fly 0.3s linear 1.85s forwards; }
+.rebrand:has(.rebrand-trigger.visible) .b1 { animation: bolt-fly 0.3s linear 1.45s forwards; }
+.rebrand:has(.rebrand-trigger.visible) .b2 { animation: bolt-fly 0.3s linear 1.65s forwards; }
+.rebrand:has(.rebrand-trigger.visible) .b3 { animation: bolt-fly 0.3s linear 1.85s forwards; }
 @keyframes bolt-fly {
   0%   { opacity: 1; transform: translateX(0); }
   85%  { opacity: 1; }
   100% { opacity: 0; transform: translateX(260px); }
 }
 
-.rebrand.go .logo-old { animation: logo-demise 1.0s ease-in 1.95s forwards; }
+.rebrand:has(.rebrand-trigger.visible) .logo-old { animation: logo-demise 1.0s ease-in 1.95s forwards; }
 @keyframes logo-demise {
   0%   { transform: translate(-50%, -50%); }
   18%  { transform: translate(calc(-50% + 7px), calc(-50% - 3px)) rotate(1.2deg); }
@@ -359,7 +360,7 @@ html, body { background: var(--void); }
   background: radial-gradient(circle, rgba(255,214,120,0.95) 0%, rgba(255,120,60,0.6) 45%, transparent 70%);
   opacity: 0;
 }
-.rebrand.go .boom-flash { animation: boom 0.7s ease-out 2.55s forwards; }
+.rebrand:has(.rebrand-trigger.visible) .boom-flash { animation: boom 0.7s ease-out 2.55s forwards; }
 @keyframes boom {
   0%   { opacity: 1; transform: translate(-50%, -50%) scale(0.2); }
   60%  { opacity: 0.9; transform: translate(-50%, -50%) scale(2.6); }
@@ -372,13 +373,13 @@ html, body { background: var(--void); }
   background: var(--solar); box-shadow: 0 0 10px rgba(255,181,71,0.9);
   opacity: 0; transform: translate(-50%, -50%);
 }
-.rebrand.go .spark { animation: spark-fly 0.9s ease-out 2.55s forwards; }
+.rebrand:has(.rebrand-trigger.visible) .spark { animation: spark-fly 0.9s ease-out 2.55s forwards; }
 @keyframes spark-fly {
   0%   { opacity: 1; transform: translate(-50%, -50%); }
   100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.4); }
 }
 
-.rebrand.go .logo-new { animation: apex-in 0.8s cubic-bezier(0.2, 1.4, 0.4, 1) 3.2s forwards; }
+.rebrand:has(.rebrand-trigger.visible) .logo-new { animation: apex-in 0.8s cubic-bezier(0.2, 1.4, 0.4, 1) 3.2s forwards; }
 @keyframes apex-in {
   0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
   100% { opacity: 1; transform: translate(-50%, -50%) scale(1); box-shadow: var(--glow-plasma); }
