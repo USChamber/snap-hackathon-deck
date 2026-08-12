@@ -58,11 +58,11 @@
   function crew(slot) {
     // real agents/skills from our repos (.claude/skills, resources)
     const LANES = [
-      { agent: 'component agent',  task: 'builds SnapComment.vue from the spec' },
-      { agent: 'sync-tokens',      task: 'pulls Figma variables into tokens.css — deterministic, no hand-edits' },
-      { agent: 'eval-component',   task: 'audits it against the SNAP style guide — PASS / FAIL' },
-      { agent: 'api-test agent',   task: 'checks API test coverage' },
-      { agent: 'review agent',     task: 'first-pass code review' },
+      { agent: 'the builder',       task: 'turns the written spec into the working component' },
+      { agent: 'the design syncer', task: 'pulls colors and spacing straight out of Figma — exactly, every time' },
+      { agent: 'the inspector',     task: 'grades the result against the style guide — pass or fail' },
+      { agent: 'the tester',        task: 'makes sure nothing breaks' },
+      { agent: 'the reviewer',      task: 'does the first code review before a human ever looks' },
     ];
     slot.innerHTML = `
       <div class="swarm">
@@ -179,11 +179,11 @@
       on each topic, they could add related topics, type thing."`;
 
     const RESULTS = [
-      { icon: '✓', tone: 'plasma', text: 'intent parsed — personalized home feed for the logged-in portal' },
-      { icon: '⚡', tone: 'nebula', text: 'plan drafted — 3 query layers: stated → inferred → tangential' },
-      { icon: '✓', tone: 'plasma', text: 'spec started — inferred interests on the user model' },
-      { icon: '✓', tone: 'nebula', text: 'repo rules applied — Craft queries, not AI search' },
-      { icon: '✓', tone: 'solar',  text: 'planning session opened — "work with me on this"' },
+      { icon: '✓', tone: 'plasma', text: 'understood the goal — a personalized home page for members' },
+      { icon: '⚡', tone: 'nebula', text: 'sketched the plan — what you follow, what you seem to like, what’s related' },
+      { icon: '✓', tone: 'plasma', text: 'started the write-up — remembering each user’s “inferred interests”' },
+      { icon: '✓', tone: 'nebula', text: 'followed the house rules — used our existing search, no AI bolted on' },
+      { icon: '✓', tone: 'solar',  text: 'heard “work with me on this” — and asked questions instead of building' },
     ];
     slot.innerHTML = `
       <div class="voice">
