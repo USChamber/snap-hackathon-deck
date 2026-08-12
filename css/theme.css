@@ -255,6 +255,7 @@ html, body { background: var(--void); }
 .timeline.old .timeline-track { width: 100%; justify-content: space-between; }
 .tl-sep { color: var(--edge-strong); }
 .velocity-callout { font-size: 1.5rem; font-family: var(--font-display); }
+.velocity-first { font-size: 1.25rem; margin-top: 0.8em; }
 
 .loop-row { display: flex; align-items: center; gap: 2.5rem; }
 .loop-ring {
