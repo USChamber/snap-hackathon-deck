@@ -82,16 +82,19 @@ html, body { background: var(--void); }
 .two-problems li { margin: 0.6em 0; }
 .two-problems strong { color: var(--plasma); font-weight: 500; }
 
-/* Demo slide — placeholder; the demo runs live in a separate tab */
-.demo-slide { text-align: center !important; }
-.demo-placeholder {
-  display: inline-block; text-align: center;
-  border: 1px solid var(--edge-strong); border-radius: 14px;
-  background: var(--deep); box-shadow: var(--glow-plasma);
-  padding: 3rem 4.5rem;
+/* Persona slide — Sam, the demo's protagonist */
+.persona { display: flex; gap: 2.2rem; align-items: flex-start; }
+.persona-photo {
+  flex-shrink: 0; width: 300px; border-radius: 14px;
+  border: 1px solid var(--edge-strong); box-shadow: var(--glow-plasma);
 }
-.demo-placeholder .title-lg { color: var(--plasma); }
-.demo-flow { font-family: var(--font-mono); font-size: 1.3rem; margin: 0.6em 0; }
+.persona-title { font-size: 1.2rem; font-weight: 500; margin: 0 0 0.8em; }
+.persona-points { list-style: none; padding: 0; margin: 0; }
+.persona-points li {
+  font-size: 1.1rem; line-height: 1.5; margin-bottom: 0.7em;
+  padding-left: 1.1em; position: relative;
+}
+.persona-points li::before { content: '·'; position: absolute; left: 0; color: var(--plasma); }
 
 /* Visualization slots (populated by js/viz.js) */
 .viz-slot { min-height: 46vh; }
@@ -422,22 +425,26 @@ html, body { background: var(--void); }
   70%  { filter: blur(0) brightness(1); }
   100% { opacity: 1; transform: none; }
 }
-/* after the cards land, the whole frame crawls slowly upward so the
-   bottom row's names come fully into view (and stay there) */
-.reveal .slides section.present .team-scroll {
-  animation: team-crawl 7s ease-in-out 2.2s forwards;
+/* ---------- Credits roll (final slide) ---------- */
+.credits { position: relative; height: 620px; overflow: hidden; }
+.credits-scroll { padding-top: 200px; text-align: center; }
+.credits-scroll .crawl-line { margin-top: 3.5em; }
+.credits-scroll .team-title { margin-bottom: 0.6em; }
+.credits-scroll .viz-slot { min-height: 0; }
+.credits .fragment.credits-trigger { display: none; }
+/* one click rolls everything up and out, end-credits style */
+.credits:has(.credits-trigger.visible) .credits-scroll {
+  animation: credits-roll 35s linear forwards;
 }
-@keyframes team-crawl {
+@keyframes credits-roll {
   from { transform: translateY(0); }
-  to   { transform: translateY(-170px); }
+  to   { transform: translateY(-110%); }
 }
 
 /* cards must never stay invisible if animations are off */
 @media (prefers-reduced-motion: reduce) {
   .sw-card { opacity: 1 !important; animation: none !important; }
-  .reveal .slides section.present .team-scroll {
-    animation: none; transform: translateY(-170px);
-  }
+  .credits:has(.credits-trigger.visible) .credits-scroll { animation: none; }
 }
 
 /* Slow, purposeful motion only */
