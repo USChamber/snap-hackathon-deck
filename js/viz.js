@@ -222,7 +222,7 @@
     slot.innerHTML = `
       <div class="bedrock-hero">
         <img src="assets/sandcastle.png" alt="A crumbling sandcastle on shifting sand next to an identical castle standing on deep bedrock strata">
-        <p class="hero-label dim" style="left:27.5%; top:10%;">Lovable / Replit</p>
+        <p class="hero-label dim" style="left:27.5%; top:10%;">Vibecoding</p>
         <p class="hero-label plasma" style="left:71%; top:6%;">APEX</p>
         <ul class="sand-missing">
           ${MISSING.map((m, i) => `<li class="fragment" data-fragment-index="${i}">${m}</li>`).join('')}
