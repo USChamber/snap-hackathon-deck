@@ -305,14 +305,15 @@
   // (the rebrand/Falcon sequence is pure CSS — driven by
   //  .rebrand:has(.rebrand-trigger.visible) in theme.css)
 
-  // history timeline: auto-reveal its fragments, one every 0.5s, on arrival
-  let historyTimer = null;
+  // some slides auto-reveal their fragments, one every 0.5s, on arrival
+  const AUTO_REVEAL_SLIDES = ['viz-history', 'persona-slide'];
+  let autoRevealTimer = null;
   Reveal.on('slidechanged', (e) => {
-    clearInterval(historyTimer);
-    if (e.currentSlide.id === 'viz-history') {
-      historyTimer = setInterval(() => {
+    clearInterval(autoRevealTimer);
+    if (AUTO_REVEAL_SLIDES.includes(e.currentSlide.id)) {
+      autoRevealTimer = setInterval(() => {
         if (Reveal.availableFragments().next) Reveal.nextFragment();
-        else clearInterval(historyTimer);
+        else clearInterval(autoRevealTimer);
       }, 500);
     }
   });

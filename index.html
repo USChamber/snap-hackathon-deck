@@ -66,33 +66,43 @@
         <aside class="notes">Clip plays automatically, full-bleed; arrow on when ready. Sets up the squadron slide.</aside>
       </section>
 
+      <!-- 3f–3g. Product screenshots — login and onboarding -->
+      <section data-background-image="assets/login.png"
+               data-background-size="contain" data-background-color="#05070f">
+        <aside class="notes">The APEX login screen. Quick beat — the product is real; here's the front door.</aside>
+      </section>
+      <section data-background-image="assets/onboard.png"
+               data-background-size="contain" data-background-color="#05070f">
+        <aside class="notes">Onboarding — members pick their topics; this powers the personalized feed Sam's about to see.</aside>
+      </section>
+
       <!-- 4. Demo setup — meet Sam, then the live demo in a separate tab -->
       <section id="persona-slide">
         <h2>Meet <span class="plasma">Sam</span></h2>
         <div class="persona">
-          <img class="persona-photo" src="assets/sam-state-chamber.jpg"
-               alt="Sam, VP of Government Affairs at the Business Council of New York State">
+          <div class="persona-photo-stack">
+            <img class="persona-photo" src="assets/sam-state-chamber.jpg"
+                 alt="Sam, VP of Government Affairs at a state chamber">
+            <img class="persona-photo persona-photo-flash" src="assets/sam-state-chamber-star-wars.jpg"
+                 alt="" aria-hidden="true">
+          </div>
           <div class="persona-bio">
-            <p class="persona-title">VP of Government Affairs,
-               Business Council of New York State <span class="dim">(BCNYS)</span></p>
+            <p class="persona-title">VP of Government Affairs, Generic State Chamber</p>
             <ul class="persona-points">
-              <li class="fragment">Oversees BCNYS's statewide policy agenda — energy, economic
+              <li class="fragment">Oversees the chamber's statewide policy agenda — energy, economic
                   development, tax, environment, infrastructure.</li>
-              <li class="fragment">Key liaison to Albany policymakers.</li>
+              <li class="fragment">Key liaison to statehouse policymakers.</li>
               <li class="fragment">Increasingly focused on <span class="solar">data center policy</span>
                   amid proposals for a statewide moratorium.</li>
-              <li class="fragment">Wants to know how other states have advocated for regulatory
-                  balance — growth, grid investment, and New York's competitiveness in attracting
-                  AI and digital infrastructure.</li>
             </ul>
           </div>
         </div>
         <aside class="notes">
-          Sam is the demo. Land the last bullet — "how have OTHER states handled this?" — that's
-          exactly the question APEX answers. Then switch to the APEX tab (open, logged in,
-          pre-positioned before you go on stage) and drive the demo as Sam: log in → see the
-          personalized feed → find data-center threads from other states → post/reply. This is
-          the primary scoring moment. When done, switch back and arrow on.
+          Sam is the demo. Land the data-center bullet, then say the question out loud: "How have
+          other states handled this?" — that's exactly the question APEX answers. Then switch to
+          the APEX tab (open, logged in, pre-positioned before you go on stage) and drive the demo
+          as Sam: log in → see the personalized feed → find data-center threads from other states
+          → post/reply. This is the primary scoring moment. When done, switch back and arrow on.
         </aside>
       </section>
 
@@ -106,6 +116,20 @@
           "We didn't discover AI in January. We've been adopting every wave since the first
           Copilot beta in 2021 — autocomplete, then a knowledge companion, then early agentic
           tools while they were still rough, so when agents got good in 2026, we were ready."
+        </aside>
+      </section>
+
+      <!-- 5c. Viz 4 — Velocity: line vs loop -->
+      <section id="viz-velocity">
+        <h2>Putting it all together</h2>
+        <div class="viz-slot" data-viz="velocity"></div>
+        <aside class="notes">
+          The shape is the argument: the old way is a line — work moves one direction through six
+          pairs of hands, and a mistake at the end restarts the whole line. Click: "The APEX way" —
+          then the loop: prompt, generate, review, refine, around again in hours, and you only exit
+          when it's right: ship. Worth saying out loud somewhere here: APEX is the first project
+          we've shipped end-to-end this way — three developers, one from a team we'd never worked
+          with; the specs and prompts were the shared language.
         </aside>
       </section>
 
@@ -148,20 +172,6 @@
           the repo catches it — our rules know we query Craft instead of bolting on AI search, our
           skills know what a spec looks like, our agents know how to open a planning loop instead
           of blindly generating. Mic in, structured plan out. Let each receipt land as you click.
-        </aside>
-      </section>
-
-      <!-- 7b. Viz 4 — Velocity -->
-      <section id="viz-velocity">
-        <h2>Putting it all together</h2>
-        <div class="viz-slot" data-viz="velocity"></div>
-        <aside class="notes">
-          The shape is the argument: the old way is a line — work moves one direction through six
-          pairs of hands, and a mistake at the end restarts the whole line. Click: "The APEX way" —
-          then the loop: prompt, generate, review, refine, around again in hours, and you only exit
-          when it's right: ship. Worth saying out loud somewhere here: APEX is the first project
-          we've shipped end-to-end this way — three developers, one from a team we'd never worked
-          with; the specs and prompts were the shared language.
         </aside>
       </section>
 

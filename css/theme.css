@@ -84,9 +84,24 @@ html, body { background: var(--void); }
 
 /* Persona slide — Sam, the demo's protagonist */
 .persona { display: flex; gap: 2.2rem; align-items: flex-start; }
+.persona-photo-stack { position: relative; flex-shrink: 0; width: 300px; }
 .persona-photo {
   flex-shrink: 0; width: 300px; border-radius: 14px;
   border: 1px solid var(--edge-strong); box-shadow: var(--glow-plasma);
+  display: block;
+}
+/* subliminal gag: pilot-Sam flashes through for a split second every 4s */
+.persona-photo-flash {
+  position: absolute; inset: 0; opacity: 0;
+  animation: sam-flash 4s steps(1, end) infinite;
+}
+@keyframes sam-flash {
+  0%, 96%  { opacity: 0; }
+  96.1%    { opacity: 1; }
+  100%     { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .persona-photo-flash { animation: none; opacity: 0; }
 }
 .persona-title { font-size: 1.2rem; font-weight: 500; margin: 0 0 0.8em; }
 .persona-points { list-style: none; padding: 0; margin: 0; }
