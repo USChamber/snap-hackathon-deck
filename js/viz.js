@@ -310,7 +310,6 @@
   const AUTO_REVEAL = {
     'persona-slide': {},
     'viz-history':   {},
-    'viz-velocity':  {},
     'viz-pipeline':  {},
     'viz-crew':      {},
     'viz-voice':     {},
