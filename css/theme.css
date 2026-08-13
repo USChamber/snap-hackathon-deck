@@ -428,7 +428,7 @@ html, body { background: var(--void); }
 /* ---------- Credits roll (final slide) ---------- */
 .credits { position: relative; height: 620px; overflow: hidden; }
 .credits-scroll { padding-top: 200px; text-align: center; }
-.credits-scroll .crawl-line { margin-top: 3.5em; }
+.credits-scroll .crawl-line { margin-top: 420px; }
 .credits-scroll .team-title { margin-bottom: 0.6em; }
 .credits-scroll .viz-slot { min-height: 0; }
 .credits .fragment.credits-trigger { display: none; }
