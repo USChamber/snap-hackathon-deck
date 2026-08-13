@@ -305,17 +305,32 @@
   // (the rebrand/Falcon sequence is pure CSS — driven by
   //  .rebrand:has(.rebrand-trigger.visible) in theme.css)
 
-  // some slides auto-reveal their fragments, one every 0.5s, on arrival
-  const AUTO_REVEAL_SLIDES = ['viz-history', 'persona-slide'];
-  let autoRevealTimer = null;
+  // auto-reveal fragments on arrival: every 0.5s by default; `delay` overrides
+  // the wait before the FIRST reveal (credits holds 5s before the roll starts)
+  const AUTO_REVEAL = {
+    'persona-slide': {},
+    'viz-history':   {},
+    'viz-velocity':  {},
+    'viz-pipeline':  {},
+    'viz-crew':      {},
+    'viz-voice':     {},
+    'viz-bedrock':   {},
+    'credits-slide': { delay: 5000 },
+  };
+  let autoDelayTimer = null, autoStepTimer = null;
   Reveal.on('slidechanged', (e) => {
-    clearInterval(autoRevealTimer);
-    if (AUTO_REVEAL_SLIDES.includes(e.currentSlide.id)) {
-      autoRevealTimer = setInterval(() => {
-        if (Reveal.availableFragments().next) Reveal.nextFragment();
-        else clearInterval(autoRevealTimer);
-      }, 500);
-    }
+    clearTimeout(autoDelayTimer);
+    clearInterval(autoStepTimer);
+    const cfg = AUTO_REVEAL[e.currentSlide.id];
+    if (!cfg) return;
+    const step = () => {
+      if (Reveal.availableFragments().next) Reveal.nextFragment();
+      else clearInterval(autoStepTimer);
+    };
+    autoDelayTimer = setTimeout(() => {
+      step();
+      autoStepTimer = setInterval(step, 500);
+    }, cfg.delay ?? 500);
   });
 
   Reveal.on('ready', () => Reveal.sync());
